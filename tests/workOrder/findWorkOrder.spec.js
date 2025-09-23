@@ -13,7 +13,7 @@ test.describe('Find Work Order Tests', () => {
     const result = await loginPage.login(config.credentials.username, config.credentials.password);
 
     workOrderPage = new WorkOrderPage(page);
-    await workOrderPage.openJob('1502');
+    await workOrderPage.openWorkOrder('1502');
 
     if (test.info().title === 'Search Work Order by invalid ID') return;
 

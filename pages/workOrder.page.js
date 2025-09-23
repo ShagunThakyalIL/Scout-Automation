@@ -3,7 +3,7 @@ exports.WorkOrderPage = class WorkOrderPage {
     this.page = page;
   }
 
-  async openJob(jobId) {
+  async openWorkOrder(jobId) {
     await this.page.getByText(jobId).first().click();
     await this.page.getByText('Work Orders').click();
   }
@@ -45,17 +45,21 @@ exports.WorkOrderPage = class WorkOrderPage {
     await this.page.getByRole('button', { name: 'Close', exact: true }).last().click();
   }
 
-  async editJob() {
-    await this.page.locator('.lucide.lucide-pencil').first().click();
-  }
+// Edit Job
 
   async editJob() {
     await this.page.locator('.lucide.lucide-pencil').first().click();
   }
+
+  async editJobButton() {
+    await this.page.getByRole('button', { name: 'Edit JOB' }).click();
+  }
+
+
+// Delete Job
 
   async deleteJob(jobId) {
-    await this.page.getByRole('row', { name: jobId }).getByRole('img').nth(1).click();
-    await this.page.getByRole('button', { name: 'DELETE JOB' }).click();
+    await this.page.locator('.lucide.lucide-trash').first().click();
     await this.page.getByRole('button').filter({ hasText: /^$/ }).first().click();
   }
 
@@ -64,6 +68,13 @@ exports.WorkOrderPage = class WorkOrderPage {
     await this.page.getByRole('button', { name: 'DELETE JOB' }).click();
     await this.page.getByRole('button').filter({ hasText: /^$/ }).first().click();
   }
+
+  async deleteJobButton() {
+    await this.page.getByRole('button', { name: 'DELETE JOB' }).click();
+    await this.page.getByRole('button').filter({ hasText: /^$/ }).first().click();
+  }
+
+// View Notes
 
   async viewJobNotes(jobId) {
     await this.page.getByRole('row', { name: jobId }).getByRole('img').first().click();
@@ -76,12 +87,18 @@ exports.WorkOrderPage = class WorkOrderPage {
     await this.page.getByRole('button', { name: 'Close', exact: true }).click();
   }
 
-  async viewPartsUsed() {
-    await this.page.getByRole('button', { name: 'View Parts Used' }).click();
+   async viewJobNotesButton() {
+    await this.page.getByRole('button', { name: 'JOB NOTES' }).click();
+    await this.page.getByRole('button', { name: 'Close', exact: true }).click();
   }
 
-  async viewJob() {
-    await this.page.getByRole('button', { name: 'View Job' }).click();
+  async viewPartsUsed() {
+    await this.page.getByRole('button', { name: 'View Parts Used' }).click();
+
+  }
+
+  async viewJob(jobId) {
+    await this.page.getByRole('row', { name: jobId }).getByRole('img').nth(1).click();
   }
 
   async addAsset() {
