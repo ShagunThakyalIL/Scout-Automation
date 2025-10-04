@@ -8,9 +8,11 @@ test.describe('Find Work Order Tests', () => {
   let firstWorkOrder;
   
   test.beforeEach(async ({ page }) => {
-    const loginPage = new LoginPage(page);
-    await page.goto(config.baseURL);
-    const result = await loginPage.login(config.credentials.username, config.credentials.password);
+    // const loginPage = new LoginPage(page);
+    // await page.goto(config.baseURL);
+    // const result = await loginPage.login(config.credentials.username, config.credentials.password);
+
+    await workOrderPage.login();
 
     workOrderPage = new WorkOrderPage(page);
     await workOrderPage.openWorkOrder('1502');
