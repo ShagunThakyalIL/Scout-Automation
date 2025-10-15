@@ -1,6 +1,4 @@
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../../pages/login.page.js';
-import config from '../../config/base.config.js';
 import { WorkOrderPage } from '../../pages/workOrder.page.js';
 
 test.describe('Find Work Order Tests', () => {
@@ -8,10 +6,6 @@ test.describe('Find Work Order Tests', () => {
   let firstWorkOrder;
   
   test.beforeEach(async ({ page }) => {
-    // const loginPage = new LoginPage(page);
-    // await page.goto(config.baseURL);
-    // const result = await loginPage.login(config.credentials.username, config.credentials.password);
-
     await workOrderPage.login();
 
     workOrderPage = new WorkOrderPage(page);
@@ -53,5 +47,4 @@ test.describe('Find Work Order Tests', () => {
   test('Open Edit page', async ({page}) => {
     await workOrderPage.editJob();
   })
-
 });
