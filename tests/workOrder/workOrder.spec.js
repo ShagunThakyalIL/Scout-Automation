@@ -10,17 +10,28 @@ test.describe('Work Order Tests', () => {
     await page.goto(config.baseURL);
     const result = await loginPage.login(config.credentials.username, config.credentials.password);
     workOrderPage = new WorkOrderPage(page);
-    await workOrderPage.openJob('1502');
+    await workOrderPage.openWorkOrder('1502');
   });
 
   test('Filter Work Orders', async ({ page }) => {
     await workOrderPage.filterWorkOrders();
-    // ✅ Add expect based on filter result
   });
 
   test('Add new work order page', async ({page}) => {
     await workOrderPage.addWorkOrder();
   })
 
+  test('Edit Work Order page', async ({page}) => {
+    await workOrderPage.editJob();
+  })
 
+  test('Delete Work Order', async ({page}) => {
+    const firstWorkOrder = await workOrderPage.getFirstWorkOrderNumber();
+    await workOrderPage.deleteJob(firstWorkOrder);
+  })
+
+  test('Job notes', async ({page}) => {
+    const firstWorkOrder = await workOrderPage.getFirstWorkOrderNumber();
+    await workOrderPage.viewJobNotes(firstWorkOrder);
+  })
 });
